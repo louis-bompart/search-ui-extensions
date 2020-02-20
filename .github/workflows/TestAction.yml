@@ -1,0 +1,25 @@
+name: CI
+
+on: [push]
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+            - name: Install dependencies
+              run: npm ci
+            - name: Lint
+              run: npm run lint
+            - name: Build
+              run: npm run build
+            - name: Unit Tests
+              run: npm run test && cat ./bin/coverage/lcov.info
+            - name: Upload Coverage
+              uses: coverallsapp/github-action@v1.0.1
+              with:
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  path-to-lcov: ./bin/coverage/lcov.info
+            - name: Functional Tests
+              uses: cypress-io/github-action@v1.16.1
