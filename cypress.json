@@ -1,0 +1,11 @@
+{
+    "baseUrl": "http://localhost:8080",
+    "reporter": "spec",
+    "viewportHeight": 600,
+    "viewportWidth": 800,
+    "reporterOptions": {
+        "toConsole": true
+    },
+    "chromeWebSecurity": false,
+    "video": false
+}
